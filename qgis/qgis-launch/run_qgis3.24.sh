@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# bash qgis/qgis-launch/run_qgis3.24.sh
+
 xhost +
 
 docker run --rm -it \
