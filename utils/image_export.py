@@ -12,7 +12,7 @@ import subprocess
 # bash run_qgis3.24_tiler.sh
 # python3 utils/image_export.py
 
-project_path = "qgis/overview-tests.qgz"
+project_path = "qgis/qgis-projects/overview-tests.qgz"
 
 # Supply path to qgis install location
 QgsApplication.setPrefixPath("/usr", False)
@@ -53,7 +53,7 @@ for scl in scales:
         )
     )
     file_name = str(scl) + "_test_images.tif"
-    image_path = os.path.join("pyqis_test", file_name)
+    image_path = os.path.join("data-outputs", "processed-raw", file_name)
 
     # Start Map Settings
     settings = QgsMapSettings()
@@ -84,8 +84,8 @@ for scl in scales:
     render.finished.connect(loop.quit)
     loop.exec_()
 
-    gtif_file_name = str(scl) + "_GDAL_test_images.tif"
-    gtif_path = os.path.join("pyqis_test", gtif_file_name)
+    gtif_file_name = str(scl) + "_gtiff_images.tif"
+    gtif_path = os.path.join("data-outputs", "processed-raw", gtif_file_name)
 
     if scl == 500000:
         ext = ".ovr.ovr.ovr.ovr"
@@ -104,12 +104,15 @@ for scl in scales:
     ymax = proj_extent.yMaximum()
 
     gdal.Translate(gtif_path, image_path, outputBounds=[xmin, ymax, xmax, ymin])
+    os.remove(image_path)
 
     for_cog_list.append(gtif_path)
 
     get_last = scales[-1]
     print(get_last)
-    cog_name = os.path.join("pyqis_test", "cog", (str(get_last) + ".tif" + ext))
+    cog_name = os.path.join(
+        "data-outputs", "processed-overviews", (str(get_last) + ".tif" + ext)
+    )
     shutil.copy(gtif_path, cog_name)
 
 # source_cog = for_cog_list[-1]

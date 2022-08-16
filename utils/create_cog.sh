@@ -2,8 +2,8 @@
 
 # bash utils/create_cog.sh
 
-input_file="cog/25000.tif"
-output_file="cog/MAIN_COG.tif"
+input_file="data-outputs/processed-overviews/25000.tif"
+output_file="data-outputs/processed-cog/HM_COG.tif"
 
 gdal_translate $input_file $output_file \
     -of COG \

@@ -67,3 +67,4 @@ data-outputs/*
 
 # hide secrets
 .creds
+.config
