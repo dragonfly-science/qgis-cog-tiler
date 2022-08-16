@@ -20,7 +20,7 @@ TODO:
 2. Expand project to larger area
 
 ```
-bash qgis/qgis-launch/run_qgis3.24.sh
+bash qgis/qgis-launch/run_qgis3.24.sh qgis/qgis-projects/vrt-tests.qgz
 ```
 
 ### Launch Tiler
