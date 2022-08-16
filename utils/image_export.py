@@ -12,7 +12,7 @@ import subprocess
 # bash run_qgis3.24_tiler.sh
 # python3 utils/image_export.py
 
-project_path = "qgis/qgis-projects/overview-tests.qgz"
+project_path = "qgis/qgis-projects/vrt-tests.qgz"
 
 # Supply path to qgis install location
 QgsApplication.setPrefixPath("/usr", False)
