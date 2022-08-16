@@ -21,7 +21,7 @@ bash qgis/qgis-launch/run_qgis3.24.sh
 
 ### Launch Tiler
 TODO:
-Tiler is no different then QGIS project, except script launches inside QGIS docker. Work out whether this is needed
+1. Tiler is no different then QGIS project, except script launches inside QGIS docker. Work out whether this is needed
 
 ```
 bash qgis/qgis-tiler/run_qgis3.24_tiler.sh
