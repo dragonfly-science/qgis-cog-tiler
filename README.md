@@ -4,7 +4,9 @@ Process to to take QGIS project throught to COG creatng a COG raster that acts l
 
 The method is still in early development. A scripted method to leverage pyQGIS to export styled images at each zoom scale of interest, then convert thos images into a single COG format. 
 
-The basic premise is to create a QGIS project with data that employs styling rules for each zoom level. This includes changs inline widths, blending, turning data on and off, etc.  With the QGIS project in place, we then export raw tif images for each zoom scale at varying resolutions (mirroring a similar process to Tilemill).  The images are coverted to GeoTiff and built using an overview structure, with the lowest resolution being the root. The root image, with overviews, is then converted to a COG.  The COG is a single Tif image, with overviews internally tiled like a raster tile. This COG can then be used in a web client like a raster tile 
+The basic premise is to create a QGIS project with data that employs styling rules for each zoom level. This includes changs inline widths, blending, turning data on and off, etc.  With the QGIS project in place, we then export raw tif images for each zoom scale at varying resolutions (mirroring a similar process to Tilemill).  The images are coverted to GeoTiff and built using an overview structure, with the lowest resolution being the root. The root image, with overviews, is then converted to a COG.  The COG is a single Tif image, with overviews internally tiled like a raster tile. This COG can then be used in a web client like a raster tile.
+
+Resolutions and scales set per LINZ map tiles standards: https://www.linz.govt.nz/data/linz-data-service/guides-and-documentation/nztm2000-map-tile-service-schema 
 
 ## Method
 Experimental: This process is developed to work on a specific QGIS project and a single extent

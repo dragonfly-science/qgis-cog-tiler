@@ -33,26 +33,36 @@ project.read(project_path)
 # Project Extent
 proj_extent = project.mapLayersByName("hm-extent")[0].extent()
 
+# Resolutions and scales set per LINZ map tiles standards:
+# https://www.linz.govt.nz/data/linz-data-service/guides-and-documentation/nztm2000-map-tile-service-schema
 meter_to_inch = 39.3701
 dpi = 90.71428571428571
 scales = [500000, 250000, 100000, 50000, 25000]
+root_scale = min(scales)
+sorted_list = sorted(scales, reverse=False)
+list_length = len(sorted_list)
 
 for_cog_list = []
-for scl in scales:
-    print(scl)
+ovr_ext = ".ovr"
+ovr_name = str(root_scale) + ".tif"
+print(ovr_name)
+for ovr in sorted_list:
+    if ovr != root_scale:
+        ovr_name = ovr_name + ovr_ext
+
     width = math.ceil(
         abs(
-            (((proj_extent.xMinimum() - proj_extent.xMaximum()) * meter_to_inch) / scl)
+            (((proj_extent.xMinimum() - proj_extent.xMaximum()) * meter_to_inch) / ovr)
             * dpi
         )
     )
     height = math.ceil(
         abs(
-            (((proj_extent.yMinimum() - proj_extent.yMaximum()) * meter_to_inch) / scl)
+            (((proj_extent.yMinimum() - proj_extent.yMaximum()) * meter_to_inch) / ovr)
             * dpi
         )
     )
-    file_name = str(scl) + "_test_images.tif"
+    file_name = str(ovr) + "_test_images.tif"
     image_path = os.path.join("data-outputs", "processed-raw", file_name)
 
     # Start Map Settings
@@ -84,19 +94,8 @@ for scl in scales:
     render.finished.connect(loop.quit)
     loop.exec_()
 
-    gtif_file_name = str(scl) + "_gtiff_images.tif"
+    gtif_file_name = str(ovr) + "_gtiff_images.tif"
     gtif_path = os.path.join("data-outputs", "processed-raw", gtif_file_name)
-
-    if scl == 500000:
-        ext = ".ovr.ovr.ovr.ovr"
-    elif scl == 250000:
-        ext = ".ovr.ovr.ovr"
-    elif scl == 100000:
-        ext = ".ovr.ovr"
-    elif scl == 50000:
-        ext = ".ovr"
-    elif scl == 25000:
-        ext = ""
 
     xmin = proj_extent.xMinimum()
     ymin = proj_extent.yMinimum()
@@ -108,11 +107,7 @@ for scl in scales:
 
     for_cog_list.append(gtif_path)
 
-    get_last = scales[-1]
-    print(get_last)
-    cog_name = os.path.join(
-        "data-outputs", "processed-overviews", (str(get_last) + ".tif" + ext)
-    )
+    cog_name = os.path.join("data-outputs", "processed-overviews", (ovr_name))
     shutil.copy(gtif_path, cog_name)
 
 # source_cog = for_cog_list[-1]
