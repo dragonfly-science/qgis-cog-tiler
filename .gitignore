@@ -41,6 +41,7 @@ testing_data/*
 target
 data/*
 data-outputs/*
+web-docs/cog-raster-tile/cog/*
 *.lock
 *.h5
 
