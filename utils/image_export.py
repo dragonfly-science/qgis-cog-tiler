@@ -9,7 +9,7 @@ from osgeo import gdal
 import shutil
 import subprocess
 
-# bash run_qgis3.24_tiler.sh
+# bash  qgis/qgis-tiler/run_qgis3.24_tiler.sh
 # python3 utils/image_export.py
 
 project_path = "qgis/qgis-projects/vrt-tests.qgz"
@@ -102,7 +102,7 @@ for ovr in sorted_list:
     xmax = proj_extent.xMaximum()
     ymax = proj_extent.yMaximum()
 
-    gdal.Translate(gtif_path, image_path, outputBounds=[xmin, ymax, xmax, ymin])
+    gdal.Translate(gtif_path, image_path, outputBounds=[xmin, ymax, xmax, ymin], bandList=[1,2,3], outputSRS="EPSG:2193")
     os.remove(image_path)
 
     for_cog_list.append(gtif_path)
