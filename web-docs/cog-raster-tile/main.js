@@ -22,29 +22,30 @@ const nztmProjection = getProjection('EPSG:2193');
 
 // // NZTM tile matrix origin, resolution and matrixId definitions.
 // const origin = [-1000000, 10000000];
-// const resolutions = [
-//   8960,
-//   4480,
-//   2240,
-//   1120,
-//   560,
-//   280,
-//   140,
-//   70,
-//   28,
-//   14,
-//   7,
-//   2.8,
-//   1.4,
-//   0.7,
-//   0.28,
-//   0.14,
-//   0.07
-// ];
-// const matrixIds = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+const resolutions = [
+  8960,
+  4480,
+  2240,
+  1120,
+  560,
+  280,
+  140,
+  70,
+  28,
+  14,
+  7,
+  2.8,
+  1.4,
+  0.7,
+  0.28,
+  0.14,
+  0.07
+];
+const matrixIds = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 
 // URL to COG tile
 const url = 'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/HM_COG.tif'
+// const url = 'http://localhost:5174/cog/HM_COG.tif'
 
 const cogSource = new GeoTIFF({
   sources: [
@@ -58,7 +59,7 @@ const cogSource = new GeoTIFF({
 const cog = new TileLayer({
   visible: true,
   crossOrigin: 'anonymous',
-  source: cogSource,
+  source: cogSource
 })
 
 
@@ -69,8 +70,10 @@ const map = new Map ({
   view: new View({
     projection: nztmProjection,
     center: fromLonLat([176.0,-38.68], nztmProjection),
-    zoom: 11,
-    maxZoom: 15,
-    minZoom: 9
+    zoom: 6,
+    maxZoom: 10,
+    minZoom: 6,
+    resolutions: resolutions,
+    matrixIds: matrixIds
   })
 });
