@@ -44,8 +44,8 @@ const resolutions = [
 const matrixIds = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 
 // URL to COG tile
-// const url = 'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/HM_COG.tif'
-const url = 'http://localhost:5173/cog/HM_COG.tif'
+const url = 'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/HM_COG.tif'
+// const url = 'http://localhost:5173/cog/HM_COG.tif'
 
 const cogSource = new GeoTIFF({
   sources: [
