@@ -44,13 +44,24 @@ const resolutions = [
 const matrixIds = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 
 // URL to COG tile
-const url = 'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/HM_COG.tif'
+const urlHM = 'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/HM_COG.tif'
+const urlHN = 'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/HN_COG.tif'
 // const url = 'http://localhost:5173/cog/HM_COG.tif'
 
-const cogSource = new GeoTIFF({
+const cogSourceHM = new GeoTIFF({
   sources: [
     {
-      url: url,
+      url: urlHM,
+      tileSize: 256,
+    }
+  ],
+  convertToRGB: true,
+});
+
+const cogSourceHN = new GeoTIFF({
+  sources: [
+    {
+      url: urlHN,
       tileSize: 256,
     }
   ],
@@ -60,7 +71,7 @@ const cogSource = new GeoTIFF({
 // cog file load and colour values
 const cog = new TileLayer({
   crossOrigin: 'anonymous',
-  source: cogSource
+  sources: [cogSourceHM, cogSourceHN]
 })
 
 
