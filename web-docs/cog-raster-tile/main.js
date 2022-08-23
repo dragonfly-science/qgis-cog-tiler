@@ -11,6 +11,9 @@ import {fromLonLat} from 'ol/proj';
 proj4.defs("EPSG:2193","+proj=tmerc +lat_0=0 +lon_0=173 +k=0.9996 +x_0=1600000 +y_0=10000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs");
 register(proj4)
 const nztmProjection = getProjection('EPSG:2193');
+
+// // NZTM tile matrix origin, resolution and matrixId definitions.
+const origin = [-1000000, 10000000];
 const resolutions = [
   8960,
   4480,
@@ -33,37 +36,32 @@ const resolutions = [
 const matrixIds = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 
 // URL to COG tile
-const urlHM = 'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/HM_COG.tif'
-const urlHN = 'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/HN_COG.tif'
+const urls = [
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/HM_COG.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/HN_COG.tif'
+]
 
-const cogSourceHM = new GeoTIFF({
-  sources: [
-    {
-      url: urlHM,
-      tileSize: 256,
-    }
-  ],
-  convertToRGB: true,
-  interpolate: false,
-});
+function getSourceURLs(urls) {
+  var urlArray = [];
+  urls.forEach(address => urlArray.push(
+    new GeoTIFF({
+        sources: [
+          {
+            url:address,
+            tileSize: 256,
+          },
+        ],
+        convertToRGB: true,
+        interpolate: false,
+      }), 
+    ))
+    return urlArray
+}
 
-const cogSourceHN = new GeoTIFF({
-  sources: [
-    {
-      url: urlHN,
-      tileSize: 256,
-    }
-  ],
-  convertToRGB: true,
-  interpolate: false,
-});
-
-// cog file load and colour values
 const cog = new TileLayer({
   crossOrigin: 'anonymous',
-  sources: [cogSourceHM, cogSourceHN]
+  sources: getSourceURLs(urls)
 })
-
 
 // draw map
 const map = new Map ({
