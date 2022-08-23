@@ -6,22 +6,11 @@ import proj4 from 'proj4';
 import {register} from 'ol/proj/proj4';
 import {get as getProjection} from 'ol/proj';
 import {fromLonLat} from 'ol/proj';
-// import OSM from 'ol/source/OSM';
-// import MapLibreLayer from '@geoblocks/ol-maplibre-layer';
-
-// import Overlay from 'ol/Overlay';
-
-// import OSM from 'ol/source/OSM';
 
 // set NZTM projection extent so OL can determine zoom level 0 extents.
 proj4.defs("EPSG:2193","+proj=tmerc +lat_0=0 +lon_0=173 +k=0.9996 +x_0=1600000 +y_0=10000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs");
 register(proj4)
-// var projection = ol.proj.get("EPSG:2193");
 const nztmProjection = getProjection('EPSG:2193');
-// projection.setExtent([827933.23, 3729820.29, 3195373.59, 7039943.58]);
-
-// // NZTM tile matrix origin, resolution and matrixId definitions.
-// const origin = [-1000000, 10000000];
 const resolutions = [
   8960,
   4480,
@@ -46,7 +35,6 @@ const matrixIds = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 // URL to COG tile
 const urlHM = 'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/HM_COG.tif'
 const urlHN = 'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/HN_COG.tif'
-// const url = 'http://localhost:5173/cog/HM_COG.tif'
 
 const cogSourceHM = new GeoTIFF({
   sources: [
@@ -56,6 +44,7 @@ const cogSourceHM = new GeoTIFF({
     }
   ],
   convertToRGB: true,
+  interpolate: false,
 });
 
 const cogSourceHN = new GeoTIFF({
@@ -66,6 +55,7 @@ const cogSourceHN = new GeoTIFF({
     }
   ],
   convertToRGB: true,
+  interpolate: false,
 });
 
 // cog file load and colour values
