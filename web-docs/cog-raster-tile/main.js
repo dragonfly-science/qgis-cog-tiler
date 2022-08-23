@@ -6,6 +6,8 @@ import proj4 from 'proj4';
 import {register} from 'ol/proj/proj4';
 import {get as getProjection} from 'ol/proj';
 import {fromLonLat} from 'ol/proj';
+import XYZ from 'ol/source/XYZ';
+import TileGrid from 'ol/tilegrid/TileGrid';
 
 // set NZTM projection extent so OL can determine zoom level 0 extents.
 proj4.defs("EPSG:2193","+proj=tmerc +lat_0=0 +lon_0=173 +k=0.9996 +x_0=1600000 +y_0=10000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs");
@@ -63,9 +65,28 @@ const cog = new TileLayer({
   sources: getSourceURLs(urls)
 })
 
+ const urlTemplate =
+"https://tiles.maps.linz.io/nz_topo_basemap/NZTM/{z}/{x}/{y}.png";
+
+// Set raster layer
+const layer = new TileLayer({
+  crossOrigin: 'anonymous',
+  source: new XYZ({
+    url: urlTemplate,
+    projection: nztmProjection,
+    attributions: ['<a href="http://data.linz.govt.nz">Data from LINZ. CC BY 4.0</a>'],
+    tileGrid: new TileGrid({
+      origin: origin,
+      resolutions: resolutions,
+      matrixIds: matrixIds,
+      extent: [827933.23, 3729820.29, 3195373.59, 7039943.58]
+    })
+  })
+});
+
 // draw map
 const map = new Map ({
-  layers: [cog],
+  layers: [layer, cog],
   target: 'map',
   view: new View({
     projection: nztmProjection,
