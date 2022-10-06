@@ -12,7 +12,7 @@ docker run --rm -it \
     --network=host \
     --privileged \
     -e HOME=/work \
-    -v ${PWD}:/work \
+    -v ${HOME}:/work \
     -w /work \
     qgis/qgis:latest \
     bash
