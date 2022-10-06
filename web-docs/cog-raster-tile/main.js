@@ -40,6 +40,8 @@ const matrixIds = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 // var fs = require('fs');
 // var files = fs.readdirSync('/assets/photos/');
 
+const extent = [279896.0625000000000000,3227622.5000000000000000,3279896.0625000000000000,7227622.5000000000000000]
+
 // URL to COG tile
 const urls = [
   'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/0.tif',
@@ -99,7 +101,6 @@ function getSourceURLs(urls) {
         sources: [
           {
             url:address,
-            tileSize: 128,
           },
         ],
         convertToRGB: true,
@@ -111,7 +112,7 @@ function getSourceURLs(urls) {
 
 const cog = new TileLayer({
   crossOrigin: 'anonymous',
-  sources: getSourceURLs(urls)
+  sources: getSourceURLs(urls),
 })
 
 //  const urlTemplate =
@@ -137,16 +138,17 @@ const cog = new TileLayer({
 const map = new Map ({
   layers: [cog],
   target: 'map',
+  pixelRatio: 1,
   view: new View({
     projection: nztmProjection,
     center: fromLonLat([176.0,-38.68], nztmProjection),
     zoom: 6,
-    maxZoom: 6,
-    minZoom: 10,
+    maxZoom: 14,
+    minZoom: 0,
     resolutions: resolutions,
     matrixIds: matrixIds,
     constrainResolution: true,
-    smoothResolutionConstraint: true,
-    pixelRatio: 1,
+    smoothResolutionConstraint: false,
+    multiWorld: false,
   })
 });
