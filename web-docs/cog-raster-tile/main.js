@@ -37,10 +37,59 @@ const resolutions = [
 ];
 const matrixIds = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 
+// var fs = require('fs');
+// var files = fs.readdirSync('/assets/photos/');
+
 // URL to COG tile
 const urls = [
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/HM_COG.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/HN_COG.tif'
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/0.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/1.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/2.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/3.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/4.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/5.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/6.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/7.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/8.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/9.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/10.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/11.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/12.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/13.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/14.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/15.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/16.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/17.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/18.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/19.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/20.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/21.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/22.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/23.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/24.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/25.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/26.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/27.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/28.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/29.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/30.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/31.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/32.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/33.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/34.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/35.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/36.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/37.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/38.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/39.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/40.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/41.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/42.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/43.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/44.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/45.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/46.tif',
+  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/47.tif',
 ]
 
 function getSourceURLs(urls) {
@@ -50,7 +99,7 @@ function getSourceURLs(urls) {
         sources: [
           {
             url:address,
-            tileSize: 256,
+            tileSize: 128,
           },
         ],
         convertToRGB: true,
@@ -65,28 +114,28 @@ const cog = new TileLayer({
   sources: getSourceURLs(urls)
 })
 
- const urlTemplate =
-"https://tiles.maps.linz.io/nz_topo_basemap/NZTM/{z}/{x}/{y}.png";
+//  const urlTemplate =
+// "https://tiles.maps.linz.io/nz_topo_basemap/NZTM/{z}/{x}/{y}.png";
 
-// Set raster layer
-const layer = new TileLayer({
-  crossOrigin: 'anonymous',
-  source: new XYZ({
-    url: urlTemplate,
-    projection: nztmProjection,
-    attributions: ['<a href="http://data.linz.govt.nz">Data from LINZ. CC BY 4.0</a>'],
-    tileGrid: new TileGrid({
-      origin: origin,
-      resolutions: resolutions,
-      matrixIds: matrixIds,
-      extent: [827933.23, 3729820.29, 3195373.59, 7039943.58]
-    })
-  })
-});
+// // Set raster layer
+// const layer = new TileLayer({
+//   crossOrigin: 'anonymous',
+//   source: new XYZ({
+//     url: urlTemplate,
+//     projection: nztmProjection,
+//     attributions: ['<a href="http://data.linz.govt.nz">Data from LINZ. CC BY 4.0</a>'],
+//     tileGrid: new TileGrid({
+//       origin: origin,
+//       resolutions: resolutions,
+//       matrixIds: matrixIds,
+//       extent: [827933.23, 3729820.29, 3195373.59, 7039943.58]
+//     })
+//   })
+// });
 
 // draw map
 const map = new Map ({
-  layers: [layer, cog],
+  layers: [cog],
   target: 'map',
   view: new View({
     projection: nztmProjection,
