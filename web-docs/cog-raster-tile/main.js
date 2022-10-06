@@ -146,6 +146,7 @@ const map = new Map ({
     resolutions: resolutions,
     matrixIds: matrixIds,
     constrainResolution: true,
-    smoothResolutionConstraint: true
+    smoothResolutionConstraint: true,
+    pixelRatio: 1,
   })
 });
