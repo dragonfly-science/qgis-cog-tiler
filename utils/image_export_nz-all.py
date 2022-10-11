@@ -16,7 +16,7 @@ import os
 # python3 utils/image_export.py
 
 project_path = "dragonfly/qgis-cog-tiler/qgis/qgis-projects/full-nz.qgz"
-grid = "/home/ireese/data/nz-extent-grid.gpkg"
+grid = "/home/ireese/dragonfly/qgis-cog-tiler/data-outputs/100k_grid.gpkg"
 
 dir_name = os.path.basename(project_path).split(".")[0]
 out_base = os.path.join("dragonfly", "qgis-cog-tiler", "data-outputs", dir_name)
@@ -50,7 +50,7 @@ proj_extent = project.mapLayersByName("nz-extent")[0].extent()
 
 
 # Scales
-scales = [4000000, 2000000, 1000000, 500000, 250000, 100000]
+scales = [32000000, 16000000, 8000000, 4000000, 2000000, 1000000, 500000, 250000, 100000, 50000]
 root_scale = min(scales)
 sorted_list = sorted(scales, reverse=False)
 list_length = len(sorted_list)
@@ -77,7 +77,7 @@ for index, gtile in gpGrid.iterrows():
     
     # Loop sorted scales list
     for ovr in sorted_list:
-        print(str(ovr))
+        print(f"Scale: {str(ovr)}")
         if ovr != root_scale:
             ovr_name = ovr_name + ovr_ext
 
@@ -94,7 +94,11 @@ for index, gtile in gpGrid.iterrows():
             )
         )
         
-        file_name = str(ovr) + "_images.tif"
+        
+        print(width)
+        print(height)
+        
+        file_name = str(ovr) + "_images.png"
         image_path = os.path.join(out_base, file_name)
         
         # Start Map Settings
@@ -102,6 +106,11 @@ for index, gtile in gpGrid.iterrows():
         settings.setOutputSize(QSize(width, height))
 
         settings.setDestinationCrs(QgsCoordinateReferenceSystem(2193))
+        
+        p = QPainter()
+        img = QImage(QSize(width, height), QImage.Format_ARGB32_Premultiplied)
+        p.begin(img)        
+        p.setRenderHint(QPainter.Antialiasing)
 
         # Set layers to render
         layers = list([lyr for lyr in project.layerTreeRoot().checkedLayers()])
@@ -109,36 +118,50 @@ for index, gtile in gpGrid.iterrows():
 
         # Set Extent
         settings.setExtent(QgsRectangle(xmin, ymin, xmax, ymax))
-
-        # # setup qgis map renderer
-        print("Rendering Image...")
-        render = QgsMapRendererParallelJob(settings)
-
-        def finished():
-            img = render.renderedImage()
-            img.save(image_path, "tif")
-
-        render.finished.connect(finished)
+        
+        # setup qgis map renderer
+        print("Rendering...")
+        render = QgsMapRendererCustomPainterJob(settings, p)
         render.start()
+        render.waitForFinished()
+        p.end()
 
-        from qgis.PyQt.QtCore import QEventLoop
+        # save the image
+        print("Saving Image...")
+        img.save(image_path, "png")
 
-        print("Looping...")
-        loop = QEventLoop()
-        render.finished.connect(loop.quit)
-        loop.exec_()
+        # # # setup qgis map renderer
+        # # print("Rendering Image...")
+        # # render = QgsMapRendererParallelJob(settings)
+
+        # # def finished():
+        # #     img = render.renderedImage()
+        # #     img.save(image_path, "tif")
+
+        # # print("Mid-render....")
+        # # render.finished.connect(finished)
+        # # render.start()
+
+        # # from qgis.PyQt.QtCore import QEventLoop
+
+        # # print("Looping...")
+        # # loop = QEventLoop()
+        # # render.finished.connect(loop.quit)
+        # # loop.exec_()
 
         gtif_file_name = str(ovr) + "_gtiff_images.tif"
         gtif_path = os.path.join(raw_path, gtif_file_name)
+        
+        print(xmin, ymax, xmax, ymin)
 
         print("Running Translate...")
         gdal.Translate(gtif_path, image_path, outputBounds=[xmin, ymax, xmax, ymin], bandList=[1,2,3], outputSRS="EPSG:2193")
         os.remove(image_path)
 
-        for_cog_list.append(gtif_path)
+        # for_cog_list.append(gtif_path)
 
-        cog_name = os.path.join(processed_path, (ovr_name))
-        shutil.copy(gtif_path, cog_name)
+        # cog_name = os.path.join(processed_path, (ovr_name))
+        # shutil.copy(gtif_path, cog_name)
         
     
 # # Resolutions and scales set per LINZ map tiles standards:

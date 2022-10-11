@@ -9,6 +9,7 @@ import {fromLonLat} from 'ol/proj';
 import XYZ from 'ol/source/XYZ';
 import TileGrid from 'ol/tilegrid/TileGrid';
 
+
 // set NZTM projection extent so OL can determine zoom level 0 extents.
 proj4.defs("EPSG:2193","+proj=tmerc +lat_0=0 +lon_0=173 +k=0.9996 +x_0=1600000 +y_0=10000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs");
 register(proj4)
@@ -27,18 +28,8 @@ const resolutions = [
   70,
   28,
   14,
-  7,
-  2.8,
-  1.4,
-  0.7,
-  0.28,
-  0.14,
-  0.07
 ];
 const matrixIds = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
-
-// var fs = require('fs');
-// var files = fs.readdirSync('/assets/photos/');
 
 const extent = [279896.0625000000000000,3227622.5000000000000000,3279896.0625000000000000,7227622.5000000000000000]
 
@@ -94,45 +85,49 @@ const urls = [
   'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/47.tif',
 ]
 
-function getSourceURLs(urls) {
-  var urlArray = [];
-  urls.forEach(address => urlArray.push(
-    new GeoTIFF({
-        sources: [
-          {
-            url:address,
-          },
-        ],
-        convertToRGB: true,
-        interpolate: false,
-      }), 
-    ))
-    return urlArray
-}
+
+
+// function getSourceURLs(urls) {
+//   var urlArray = [];
+//   urls.forEach(address => urlArray.push(
+//     new GeoTIFF({
+//         sources: [
+//           {
+//             url:address,
+//           },
+//         ],
+//         convertToRGB: true,
+//         interpolate: false,
+//       }), 
+//     ))
+//     return urlArray
+// }
+
+
+// const cog = new TileLayer({
+//   crossOrigin: 'anonymous',
+//   sources: getSourceURLs(urls),
+// })
+
+const url = "https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/50000-cog.tif"
+// const url = "http://localhost:5173/cog/50000-cog.tif"
+
+const cogSource = new GeoTIFF({
+  sources: [
+    {
+      url:url,
+    },
+  ],
+  convertToRGB: true,
+})
+
+console.log(cogSource)
 
 const cog = new TileLayer({
   crossOrigin: 'anonymous',
-  sources: getSourceURLs(urls),
+  source: cogSource,
+  extent: extent,
 })
-
-//  const urlTemplate =
-// "https://tiles.maps.linz.io/nz_topo_basemap/NZTM/{z}/{x}/{y}.png";
-
-// // Set raster layer
-// const layer = new TileLayer({
-//   crossOrigin: 'anonymous',
-//   source: new XYZ({
-//     url: urlTemplate,
-//     projection: nztmProjection,
-//     attributions: ['<a href="http://data.linz.govt.nz">Data from LINZ. CC BY 4.0</a>'],
-//     tileGrid: new TileGrid({
-//       origin: origin,
-//       resolutions: resolutions,
-//       matrixIds: matrixIds,
-//       extent: [827933.23, 3729820.29, 3195373.59, 7039943.58]
-//     })
-//   })
-// });
 
 // draw map
 const map = new Map ({
@@ -142,13 +137,9 @@ const map = new Map ({
   view: new View({
     projection: nztmProjection,
     center: fromLonLat([176.0,-38.68], nztmProjection),
-    zoom: 6,
-    maxZoom: 14,
-    minZoom: 0,
+    zoom: 1,
     resolutions: resolutions,
-    matrixIds: matrixIds,
     constrainResolution: true,
-    smoothResolutionConstraint: false,
-    multiWorld: false,
+    smoothResolutionConstraint: true,
   })
 });
