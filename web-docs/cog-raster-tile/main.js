@@ -143,3 +143,11 @@ const map = new Map ({
     smoothResolutionConstraint: true,
   })
 });
+
+
+map.on('loadstart', function () {
+  map.getTargetElement().classList.add('spinner');
+});
+map.on('loadend', function () {
+  map.getTargetElement().classList.remove('spinner');
+});
