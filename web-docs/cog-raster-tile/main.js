@@ -35,105 +35,104 @@ const extent = [279896.0625000000000000,3227622.5000000000000000,3279896.0625000
 
 // URL to COG tile
 const urls = [
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/0.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/1.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/2.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/3.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/4.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/5.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/6.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/7.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/8.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/9.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/10.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/11.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/12.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/13.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/14.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/15.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/16.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/17.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/18.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/19.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/20.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/21.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/22.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/23.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/24.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/25.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/26.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/27.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/28.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/29.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/30.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/31.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/32.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/33.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/34.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/35.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/36.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/37.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/38.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/39.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/40.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/41.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/42.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/43.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/44.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/45.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/46.tif',
-  'https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/47.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/0.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/1.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/2.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/3.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/4.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/5.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/6.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/7.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/8.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/9.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/10.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/11.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/12.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/13.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/14.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/15.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/16.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/17.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/18.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/19.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/20.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/21.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/22.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/23.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/24.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/25.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/26.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/27.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/28.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/29.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/30.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/31.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/32.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/33.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/34.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/35.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/36.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/37.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/38.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/39.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/40.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/41.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/42.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/43.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/44.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/45.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/46.tif',
+  'https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/47.tif',
 ]
 
 
 
-// function getSourceURLs(urls) {
-//   var urlArray = [];
-//   urls.forEach(address => urlArray.push(
-//     new GeoTIFF({
-//         sources: [
-//           {
-//             url:address,
-//           },
-//         ],
-//         convertToRGB: true,
-//         interpolate: false,
-//       }), 
-//     ))
-//     return urlArray
-// }
+function getSourceURLs(urls) {
+  var urlArray = [];
+  urls.forEach(address => urlArray.push(
+    new GeoTIFF({
+        sources: [
+          {
+            url:address,
+          },
+        ],
+        convertToRGB: true,
+        interpolate: false,
+      }), 
+    ))
+    return urlArray
+}
 
-
-// const cog = new TileLayer({
-//   crossOrigin: 'anonymous',
-//   sources: getSourceURLs(urls),
-// })
-
-const url = "https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/50000-cog.tif"
-// const url = "http://localhost:5173/cog/50000-cog.tif"
-
-const cogSource = new GeoTIFF({
-  sources: [
-    {
-      url:url,
-    },
-  ],
-  convertToRGB: true,
-})
-
-console.log(cogSource)
 
 const cog = new TileLayer({
   crossOrigin: 'anonymous',
-  source: cogSource,
-  extent: extent,
+  sources: getSourceURLs(urls),
 })
+
+// const url = "https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/50000-cog.tif"
+// // const url = "http://localhost:5173/cog/50000-cog.tif"
+
+// const cogSource = new GeoTIFF({
+//   sources: [
+//     {
+//       url:url,
+//     },
+//   ],
+//   convertToRGB: true,
+// })
+
+// console.log(cogSource)
+
+// const cog = new TileLayer({
+//   crossOrigin: 'anonymous',
+//   source: cogSource,
+//   extent: extent,
+// })
 
 // draw map
 const map = new Map ({
   layers: [cog],
   target: 'map',
-  pixelRatio: 1,
   view: new View({
     projection: nztmProjection,
     center: fromLonLat([176.0,-38.68], nztmProjection),
