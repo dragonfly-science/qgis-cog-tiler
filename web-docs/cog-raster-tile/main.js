@@ -87,47 +87,47 @@ const urls = [
 
 
 
-function getSourceURLs(urls) {
-  var urlArray = [];
-  urls.forEach(address => urlArray.push(
-    new GeoTIFF({
-        sources: [
-          {
-            url:address,
-          },
-        ],
-        convertToRGB: true,
-        interpolate: false,
-      }), 
-    ))
-    return urlArray
-}
+// function getSourceURLs(urls) {
+//   var urlArray = [];
+//   urls.forEach(address => urlArray.push(
+//     new GeoTIFF({
+//         sources: [
+//           {
+//             url:address,
+//           },
+//         ],
+//         convertToRGB: true,
+//         interpolate: false,
+//       }), 
+//     ))
+//     return urlArray
+// }
 
-
-const cog = new TileLayer({
-  crossOrigin: 'anonymous',
-  sources: getSourceURLs(urls),
-})
-
-// const url = "https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/50000-cog.tif"
-// // const url = "http://localhost:5173/cog/50000-cog.tif"
-
-// const cogSource = new GeoTIFF({
-//   sources: [
-//     {
-//       url:url,
-//     },
-//   ],
-//   convertToRGB: true,
-// })
-
-// console.log(cogSource)
 
 // const cog = new TileLayer({
 //   crossOrigin: 'anonymous',
-//   source: cogSource,
-//   extent: extent,
+//   sources: getSourceURLs(urls),
 // })
+
+const url = "https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/50000-cog.tif"
+// const url = "http://localhost:5173/cog/50000-cog.tif"
+
+const cogSource = new GeoTIFF({
+  sources: [
+    {
+      url:url,
+    },
+  ],
+  convertToRGB: true,
+})
+
+console.log(cogSource)
+
+const cog = new TileLayer({
+  crossOrigin: 'anonymous',
+  source: cogSource,
+  extent: extent,
+})
 
 // draw map
 const map = new Map ({
