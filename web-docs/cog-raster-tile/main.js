@@ -109,7 +109,7 @@ const urls = [
 //   sources: getSourceURLs(urls),
 // })
 
-const url = "https://tile-service-raster.s3.us-east-1.amazonaws.com/cogs/as-raster-tile/50000-cog.tif"
+const url = "https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/50000-cog.tif"
 // const url = "http://localhost:5173/cog/50000-cog.tif"
 
 const cogSource = new GeoTIFF({
@@ -137,7 +137,7 @@ const map = new Map ({
   view: new View({
     projection: nztmProjection,
     center: fromLonLat([176.0,-38.68], nztmProjection),
-    zoom: 1,
+    zoom: 6,
     resolutions: resolutions,
     constrainResolution: true,
     smoothResolutionConstraint: true,
@@ -145,9 +145,9 @@ const map = new Map ({
 });
 
 
-map.on('loadstart', function () {
-  map.getTargetElement().classList.add('spinner');
-});
-map.on('loadend', function () {
-  map.getTargetElement().classList.remove('spinner');
-});
+// map.on('loadstart', function () {
+//   map.getTargetElement().classList.add('spinner');
+// });
+// map.on('loadend', function () {
+//   map.getTargetElement().classList.remove('spinner');
+// });
