@@ -133,6 +133,7 @@ const cog = new TileLayer({
 const map = new Map ({
   layers: [cog],
   target: 'map',
+  pixelRatio: 1,
   view: new View({
     projection: nztmProjection,
     center: fromLonLat([176.0,-38.68], nztmProjection),
