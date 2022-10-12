@@ -18,8 +18,6 @@ const nztmProjection = getProjection('EPSG:2193');
 // // NZTM tile matrix origin, resolution and matrixId definitions.
 const origin = [-1000000, 10000000];
 const resolutions = [
-  8960,
-  4480,
   2240,
   1120,
   560,
@@ -133,14 +131,14 @@ const cog = new TileLayer({
 const map = new Map ({
   layers: [cog],
   target: 'map',
-  pixelRatio: 1,
   view: new View({
     projection: nztmProjection,
     center: fromLonLat([176.0,-38.68], nztmProjection),
-    zoom: 6,
+    zoom: 3,
     resolutions: resolutions,
     constrainResolution: true,
     smoothResolutionConstraint: true,
+    enableRotation: false,
   })
 });
 
