@@ -1,4 +1,4 @@
-# qgis-cog-tiler
+# QGIS COG Tiler
 
 Process to take QGIS project through to COG creatng a COG raster that acts like a styled raster tile.
 
@@ -49,7 +49,7 @@ TODO:
 Inside tiler run:
 
 ```
-python3 utils/image_export_nz-all.py
+python3 utils/image-export-nz-all.py
 ```
 
 ### Create Overviews from VRTs
