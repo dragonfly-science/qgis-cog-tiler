@@ -13,7 +13,7 @@ import sys
 import os
 
 # bash  qgis/qgis-tiler/run_qgis3.24_tiler.sh
-# python3 utils/image_export.py
+# python3 utils/image_export_nz-all.py
 
 project_path = "dragonfly/qgis-cog-tiler/qgis/qgis-projects/full-nz.qgz"
 grid = "/home/ireese/dragonfly/qgis-cog-tiler/data-outputs/100k_grid.gpkg"

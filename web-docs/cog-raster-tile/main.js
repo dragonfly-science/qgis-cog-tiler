@@ -1,6 +1,7 @@
 import './style.css';
 import {Map, View} from 'ol';
 import TileLayer from 'ol/layer/WebGLTile';
+import {Group} from 'ol/layer';
 import GeoTIFF from 'ol/source/GeoTIFF';
 import proj4 from 'proj4';
 import {register} from 'ol/proj/proj4';
@@ -85,30 +86,30 @@ const urls = [
 
 
 
-// function getSourceURLs(urls) {
-//   var urlArray = [];
-//   urls.forEach(address => urlArray.push(
-//     new GeoTIFF({
-//         sources: [
-//           {
-//             url:address,
-//           },
-//         ],
-//         convertToRGB: true,
-//         interpolate: false,
-//       }), 
-//     ))
-//     return urlArray
-// }
+function getSourceURLs(urls) {
+  var urlArray = [];
+  urls.forEach(address => urlArray.push(
+    new GeoTIFF({
+        sources: [
+          {
+            url:address,
+          },
+        ],
+        convertToRGB: true,
+        interpolate: false,
+      }), 
+    ))
+    return urlArray
+}
 
-
-// const cog = new TileLayer({
-//   crossOrigin: 'anonymous',
-//   sources: getSourceURLs(urls),
-// })
+const multiCog = new TileLayer({
+  visable: false,
+  crossOrigin: 'anonymous',
+  sources: getSourceURLs(urls),
+  title: 'multi'
+})
 
 const url = "https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/50000-cog.tif"
-// const url = "http://localhost:5173/cog/50000-cog.tif"
 
 const cogSource = new GeoTIFF({
   sources: [
@@ -119,18 +120,24 @@ const cogSource = new GeoTIFF({
   convertToRGB: true,
 })
 
-console.log(cogSource)
-
 const cog = new TileLayer({
   crossOrigin: 'anonymous',
   source: cogSource,
   extent: extent,
+  title: 'single'
+})
+
+const baseGroup = new Group({
+  layers: [
+    cog,
+    multiCog
+  ]
 })
 
 // draw map
 const map = new Map ({
-  layers: [cog],
-  target: 'map',
+  layers: [baseGroup],
+  target: 'map-js',
   view: new View({
     projection: nztmProjection,
     center: fromLonLat([176.0,-38.68], nztmProjection),
@@ -141,6 +148,19 @@ const map = new Map ({
     enableRotation: false,
   })
 });
+
+// Layer Switcher
+const baseElements = document.querySelectorAll('.sidebar > input[type=radio]')
+for(let baseElement of baseElements){
+  baseElement.addEventListener('change', function(){
+    let baseValue = this.value;
+    baseGroup.getLayers().forEach(function(element, index, array){
+      let baseTitle = element.get('title');
+      element.setVisible(baseTitle === baseValue);
+    })
+  })
+}
+
 
 
 // map.on('loadstart', function () {
