@@ -46,8 +46,6 @@ bash qgis/qgis-tiler/run_qgis3.24_tiler.sh
 ```
 
 ### Export Images
-TODO:
-1. Script spcific to single extent. Build out to larger area.
 
 Inside tiler run:
 
@@ -72,3 +70,30 @@ gdal_translate ./qgis-cog-tiler/data-outputs/full-nz/holding/50000.tif ./qgis-co
 ### On the Web
 TODO:
 1. Build out web process to view COG online. See: https://github.com/dragonfly-science/paua-tile-service
+
+### Launch Web Editing
+
+Web components built using OpenLayers v6
+
+```
+npm start
+```
+
+Build project and move build to proper location fro Git to use:
+
+```
+bash utils/build-move.sh
+```
+
+Still have to manually edit index.html file at:
+
+```
+docs/index.html
+```
+
+Change to this in file
+
+```
+ <script type="module" crossorigin src="./assets/index.47111414.js"></script>
+  <link rel="stylesheet" href="./assets/index.0a012ce8.css">
+```
