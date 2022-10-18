@@ -29,12 +29,15 @@ TODO:
 TODO:
 1. Develop script to pull QGIS Docker
 2. Expand project to larger area
+3. Fix this to properly run project from Docker
 
 ```
 bash qgis/qgis-launch/run_qgis3.24.sh qgis/qgis-projects/full-nz.qgz
 ```
 
 ### Launch Tiler
+Launch Tiler to run processing script inside
+
 TODO:
 1. Tiler is no different then QGIS project, except script launches inside QGIS docker.
 
