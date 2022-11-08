@@ -6,8 +6,6 @@ from qgis.PyQt.QtGui import *
 import os
 import math
 from osgeo import gdal
-import shutil
-import subprocess
 import geopandas as gp
 import sys
 import os
