@@ -34,7 +34,7 @@ qgis: Dockerfile
 	$(IMAGE)
 
 image-export:
-	python3 utils/image-export.py $(QGISPROJECT)
+	python3 utils/image-export.py $(QGISPROJECT) $(SCALES)
 
 create-cog:
-	bash utils/overviews-from-vrt.sh $(QGISPROJECTNAME)
+	bash utils/overviews-from-vrt.sh $(QGISPROJECTNAME) "$(SCALES)"

@@ -11,9 +11,15 @@ import sys
 import os
 
 # make tiler
-# python3 utils/image-export.py "qgis/full-nz.qgz"
+# python3 utils/image-export.py "qgis/full-nz.qgz" 32000000,16000000,8000000
+# OR
+# make QGISPROJECT=qgis/full-nz.qgz.qgz SCALES=32000000,16000000,8000000 image-exports
 
 project_path = sys.argv[1]
+scales = sys.argv[2].split(",")
+
+print((scales))
+
 grid = "data/vector/100k_grid.gpkg"
 
 dir_name = os.path.basename(project_path).split(".")[0]
@@ -45,7 +51,6 @@ proj_extent = project.mapLayersByName("nz-extent")[0].extent()
 
 # Scales
 # scales = [32000000, 16000000, 8000000, 4000000, 2000000, 1000000, 500000, 250000, 100000, 50000]
-scales = [32000000, 16000000, 8000000]
 root_scale = min(scales)
 sorted_list = sorted(scales, reverse=False)
 list_length = len(sorted_list)
@@ -75,13 +80,13 @@ for index, gtile in gpGrid.iterrows():
 
         width = math.ceil(
             abs(
-                (((xmin - xmax) * meter_to_inch) / ovr)
+                (((xmin - xmax) * meter_to_inch) / float(ovr))
                 * dpi
             )
         )
         height = math.ceil(
             abs(
-                (((ymin - ymax) * meter_to_inch) / ovr)
+                (((ymin - ymax) * meter_to_inch) / float(ovr))
                 * dpi
             )
         )

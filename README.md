@@ -54,7 +54,13 @@ make tiler
 Inside tiler run:
 
 ```
-make QGISPROJECT=[YOUR QGIS PROJECT PATH HERE].qgz image-exports
+make QGISPROJECT=[YOUR QGIS PROJECT PATH HERE].qgz SCALES=YOUR,SCALES.HERE image-exports
+```
+
+Example:
+
+```
+make QGISPROJECT=qgis/full-nz.qgz.qgz SCALES=32000000,16000000,8000000 image-exports
 ```
 
 ### Create VRTs and COGs
@@ -62,7 +68,13 @@ make QGISPROJECT=[YOUR QGIS PROJECT PATH HERE].qgz image-exports
 After images are created:
 
 ```
-make QGISPROJECTNAME=[YOUR QGIS PROJECT NAME HERE] create-cog
+make QGISPROJECTNAME=[YOUR QGIS PROJECT NAME HERE] SCALES="YOUR SCALES HERE" create-cog
+```
+
+Example:
+
+```
+make QGISPROJECTNAME=full-nz SCALES="32000000 16000000 8000000" create-cog
 ```
 
 

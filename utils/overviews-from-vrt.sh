@@ -1,10 +1,14 @@
 #!/bin/bash
 
-# bash utils/overviews-from-vrt.sh full-nz
+# bash utils/overviews-from-vrt.sh full-nz "32000000 16000000 8000000"
+# OR
+# make QGISPROJECTNAME=full-nz SCALES="32000000 16000000 8000000" create-cog
 
 project=$1
 
-scales=(32000000 16000000 8000000)
+scales=($2)
+
+# scales=(32000000 16000000 8000000)
 
 max_scale=$( printf '%s\n' "${scales[@]}" | awk '$1 < m || NR == 1 { m = $1 } END { print m }' )
 
