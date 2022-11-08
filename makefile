@@ -34,7 +34,7 @@ qgis: Dockerfile
 	$(IMAGE)
 
 image-export:
-	python3 utils/image-export.py "qgis/full-nz.qgz"
+	python3 utils/image-export.py $(QGISPROJECT)
 
 create-cog:
-	bash utils/overviews-from-vrt.sh full-nz
+	bash utils/overviews-from-vrt.sh $(QGISPROJECTNAME)
