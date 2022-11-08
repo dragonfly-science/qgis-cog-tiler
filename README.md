@@ -51,11 +51,6 @@ Launch Tiler
 make tiler
 ```
 
-TODO:
-1. Expand project to larger area
-2. Fix this to properly run project from Docker
-
-
 ### Export Images
 
 Inside tiler run:
