@@ -1,46 +1,10 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
 
-# latex intermediate files
-latex/.bash_history
-latex/**/*.pdf
-latex/**/*.aux
-latex/**/*.out
-latex/**/*.toc
-latex/**/*.log
-latex/**/*.bbl
-latex/**/*.blg
-latex/**/*.bcf
-latex/**/*.-self.blg
-latex/**/report-self.bib
-latex/**/*.xml
-latex/**/tables/*.csv
-*.csv#
-
-latex/**/*.nav
-latex/**/*.run.xml
-latex/**/*.snm
-
-latex/**/*.fdb_latexmk
-latex/**/*.fls
-# R project files
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
-
-# Kube Secrets
-**/*.key.yaml
-**/*.secret.yaml
-build.log
 
 # testing data
 testing_data/*
-target
 data/*
 data-outputs/*
+cog-outputs/*
 web-docs/cog-raster-tile/cog/*
 *.lock
 *.h5

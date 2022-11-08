@@ -26,48 +26,50 @@ TODO:
 1. Build an S3 repo for data needed in QGIS project
 
 ### Open QGIS project
+
+QGIS editor and tiler can be run from Docker:
+
+```
+docker pull dragonflyscience/qgis-builds:3.22.12.ltr.20221108
+```
+
+or users can build the QGIS docker using:
+
+```
+make docker
+```
+
+Launch QGIS editor:
+
+```
+make qgis
+```
+
+Launch Tiler
+
+```
+make tiler
+```
+
 TODO:
-1. Develop script to pull QGIS Docker
-2. Expand project to larger area
-3. Fix this to properly run project from Docker
+1. Expand project to larger area
+2. Fix this to properly run project from Docker
 
-```
-bash qgis/qgis-launch/run_qgis3.24.sh qgis/qgis-projects/full-nz.qgz
-```
-
-### Launch Tiler
-Launch Tiler to run processing script inside
-
-TODO:
-1. Tiler is no different then QGIS project, except script launches inside QGIS docker.
-
-```
-bash qgis/qgis-tiler/run_qgis3.24_tiler.sh
-```
 
 ### Export Images
 
 Inside tiler run:
 
 ```
-python3 utils/image-export-nz-all.py
+python3 utils/image-export.py [QGIS PROJECT HERE].qgz
 ```
 
-### Create Overviews from VRTs
+### Create VRTs and COGs
 TODO:
 1. COG creation ATM, needs to run outside of Docker container. Build new Docker with COG capabilites, Needed is >= GDAL 3.1
 
-```
-bash utils/overviews-from-vrt.sh
-```
 
-### Create COG
-
-```
-gdal_translate ./qgis-cog-tiler/data-outputs/full-nz/holding/50000.tif ./qgis-cog-tiler/web-docs/cog-raster-tile/cog/50000-cog.tif -of COG -co COMPRESS=JPEG -co NUM_THREADS=ALL_CPUS -co QUALITY=100
-```
-
-### On the Web
+## On the Web
 TODO:
 1. Build out web process to view COG online. See: https://github.com/dragonfly-science/paua-tile-service
 
