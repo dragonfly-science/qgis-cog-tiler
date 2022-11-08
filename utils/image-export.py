@@ -46,8 +46,8 @@ layers = QgsProject.instance().mapLayers().values()
 proj_extent = project.mapLayersByName("nz-extent")[0].extent()
 
 # Scales
-scales = [32000000, 16000000, 8000000, 4000000, 2000000, 1000000, 500000, 250000, 100000, 50000]
-# scales = [32000000, 16000000, 8000000]
+# scales = [32000000, 16000000, 8000000, 4000000, 2000000, 1000000, 500000, 250000, 100000, 50000]
+scales = [32000000, 16000000, 8000000]
 root_scale = min(scales)
 sorted_list = sorted(scales, reverse=False)
 list_length = len(sorted_list)

@@ -65,8 +65,12 @@ python3 utils/image-export.py [QGIS PROJECT HERE].qgz
 ```
 
 ### Create VRTs and COGs
-TODO:
-1. COG creation ATM, needs to run outside of Docker container. Build new Docker with COG capabilites, Needed is >= GDAL 3.1
+
+After images are created:
+
+```
+bash utils/overviews-from-vrt.sh full-nz
+```
 
 
 ## On the Web
