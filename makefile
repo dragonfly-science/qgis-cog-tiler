@@ -1,13 +1,14 @@
 # Set up using QGIS 3.28
 
 BASEIMAGE := dragonflyscience/qgis-builds
-IMAGE := $(BASEIMAGE):3.22.12.ltr.20221108
+IMAGE := $(BASEIMAGE):3.22.12.ltr.20221109
 
 docker-local: Dockerfile
 	docker build --tag $(BASEIMAGE) . && \
 	docker tag $(BASEIMAGE) $(IMAGE)  
 
 tiler: Dockerfile
+	xhost + && \
 	docker run -it --rm \
 	-v $(HOME):/home/$(USER) \
 	-v /usr/share/fonts/:/usr/share/fonts/ \
@@ -31,3 +32,9 @@ qgis: Dockerfile
 	--network host \
 	-d \
 	$(IMAGE)
+
+image-export:
+	python3 utils/image-export.py "qgis/full-nz.qgz"
+
+create-cog:
+	bash utils/overviews-from-vrt.sh full-nz

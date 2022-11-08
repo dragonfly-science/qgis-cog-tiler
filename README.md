@@ -22,15 +22,13 @@ Base process is as follows:
 5. Combine images into COG.
 6. Upload COG to S3 and consume via webviewer
 
-TODO:
-1. Build an S3 repo for data needed in QGIS project
 
 ### Open QGIS project
 
 QGIS editor and tiler can be run from Docker:
 
 ```
-docker pull dragonflyscience/qgis-builds:3.22.12.ltr.20221108
+docker pull dragonflyscience/qgis-builds:3.22.12.ltr.20221109
 ```
 
 or users can build the QGIS docker using:
@@ -56,7 +54,7 @@ make tiler
 Inside tiler run:
 
 ```
-python3 utils/image-export.py [QGIS PROJECT HERE].qgz
+make image-exports
 ```
 
 ### Create VRTs and COGs
@@ -64,7 +62,7 @@ python3 utils/image-export.py [QGIS PROJECT HERE].qgz
 After images are created:
 
 ```
-bash utils/overviews-from-vrt.sh full-nz
+make create-cog
 ```
 
 

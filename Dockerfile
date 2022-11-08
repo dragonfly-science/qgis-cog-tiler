@@ -23,4 +23,6 @@ RUN apt-get install --no-install-recommends --no-install-suggests --allow-unauth
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir geopandas
 
+RUN apt-get install --no-install-recommends --no-install-suggests --allow-unauthenticated -y make
+
 CMD ["qgis"]
