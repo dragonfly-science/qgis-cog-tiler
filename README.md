@@ -54,9 +54,7 @@ make tiler
 Inside tiler run:
 
 ```
-QGISPROJECT=[YOUR QGIS PROJECT PATH HERE].qgz
-export QGISPROJECT
-make image-exports
+make QGISPROJECT=[YOUR QGIS PROJECT PATH HERE].qgz image-exports
 ```
 
 ### Create VRTs and COGs
@@ -64,9 +62,7 @@ make image-exports
 After images are created:
 
 ```
-QGISPROJECTNAME=[YOUR QGIS PROJECT NAME HERE]
-export QGISPROJECTNAME
-make create-cog
+make QGISPROJECTNAME=[YOUR QGIS PROJECT NAME HERE] create-cog
 ```
 
 
