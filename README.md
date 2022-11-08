@@ -79,8 +79,10 @@ make QGISPROJECTNAME=full-nz SCALES="32000000 16000000 8000000" create-cog
 
 
 ## On the Web
-TODO:
-1. Build out web process to view COG online. See: https://github.com/dragonfly-science/paua-tile-service
+
+COGs may be loaded to S3 for use in Openlayers.
+
+See: https://github.com/dragonfly-science/qgis-cog-tiler/tree/website/web-docs/cog-raster-tile for setting up Openlayers
 
 ### Launch Web Editing
 
@@ -96,15 +98,11 @@ Build project and move build to proper location fro Git to use:
 bash utils/build-move.sh
 ```
 
-Still have to manually edit index.html file at:
+TODO:
+
+Still have to manually edit index.html.  Need a progammatic fix
 
 ```
 docs/index.html
 ```
 
-Change to this in file
-
-```
- <script type="module" crossorigin src="./assets/index.47111414.js"></script>
-  <link rel="stylesheet" href="./assets/index.0a012ce8.css">
-```
