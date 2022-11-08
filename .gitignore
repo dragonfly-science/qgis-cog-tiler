@@ -14,6 +14,7 @@ web-docs/cog-raster-tile/cog/*
 
 # Mac
 **/.DS_Store
+.dbus*
 
 # History and AWS
 .aws
