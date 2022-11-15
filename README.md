@@ -82,7 +82,7 @@ make QGISPROJECTNAME=full-nz SCALES="32000000 16000000 8000000" create-cog
 
 COGs may be loaded to S3 for use in Openlayers.
 
-See: https://github.com/dragonfly-science/qgis-cog-tiler/tree/website/web-docs/cog-raster-tile for setting up Openlayers
+See: https://github.com/dragonfly-science/qgis-cog-tiler/tree/website/web-docs for setting up Openlayers
 
 ### Launch Web Editing
 
