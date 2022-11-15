@@ -88,21 +88,14 @@ See: https://github.com/dragonfly-science/qgis-cog-tiler/tree/website/web-docs/c
 
 Web components built using OpenLayers v6
 
+Load wesite for editing:
+
 ```
 npm start
 ```
 
-Build project and move build to proper location fro Git to use:
+Build project and move build to proper location for Git to use:
 
 ```
-bash utils/build-move.sh
+bash utils/build-move.py
 ```
-
-TODO:
-
-Still have to manually edit index.html.  Need a progammatic fix
-
-```
-docs/index.html
-```
-

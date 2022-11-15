@@ -5,7 +5,7 @@ testing_data/*
 data/*
 data-outputs/*
 cog-outputs/*
-web-docs/cog-raster-tile/cog/*
+web-docs/cog/*
 *.lock
 *.h5
 

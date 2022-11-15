@@ -22,7 +22,7 @@ tiler: Dockerfile
 	$(IMAGE) \
 	bash
 
-qgis: Dockerfile
+qgis-local: Dockerfile
 	xhost + && \
 	docker run -it --rm \
 	-v $(HOME):/home/$(USER) \
@@ -38,3 +38,6 @@ image-export:
 
 create-cog:
 	bash utils/overviews-from-vrt.sh $(QGISPROJECTNAME) "$(SCALES)"
+
+build-site:
+	python3 utils/build-move.py
