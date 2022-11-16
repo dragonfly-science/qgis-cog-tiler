@@ -37,7 +37,7 @@ image-export:
 	python3 utils/image-export.py $(QGISPROJECT) $(SCALES)
 
 create-cog:
-	bash utils/overviews-from-vrt.sh $(QGISPROJECTNAME) "$(SCALES)"
+	python3 utils/create-cog.py $(SCALES)
 
 build-site:
 	python3 utils/build-move.py
