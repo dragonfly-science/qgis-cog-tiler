@@ -88,7 +88,7 @@ See: https://github.com/dragonfly-science/qgis-cog-tiler/tree/website/web-docs f
 
 Web components built using OpenLayers v6
 
-Load wesite for editing:
+Load website for editing:
 
 ```
 npm start
