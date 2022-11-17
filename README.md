@@ -1,6 +1,6 @@
 # QGIS COG Tiler
 
-Process to take QGIS project through to COG creatng a COG raster that acts like a styled raster tile.
+Process to take QGIS project through to [Cloud-Optimised GeoTIFF](https://www.cogeo.org/) (COG) creating a COG raster that acts like a styled raster tile.
 
 The method is still in development. 
 
@@ -8,9 +8,16 @@ The method is still in development.
 
 A scripted method to leverage QGIS and pyQGIS to export styled images at each zoom scale of interest, then convert those images into a single COG format. 
 
-The basic premise is to create a QGIS project with data that employs styling rules for each zoom level. This includes changes in line widths, blending, turning data on and off, etc.  With the QGIS project in place, we then export raw tif images for each zoom scale at varying resolutions.  The images are coverted to GeoTiff and built using an overview structure, with the lowest resolution being the root. The root image, with overviews, is then converted to a COG.  The COG is a single Tif image, with overviews internally tiled like a raster tile. This COG can then be used in a web client like a raster tile.
+The basic premise is to create a QGIS project with data that employs styling rules for each zoom level.
+This includes changes in line widths, blending, turning data on and off, etc.
+With the QGIS project in place, we then export raw tif images for each zoom scale at varying resolutions.
+The images are coverted to GeoTiff and built using an overview structure, with the lowest resolution being the root.
+The root image, with overviews, is then converted to a COG.
+The COG is a single Tif image, with overviews internally tiled like a raster tile.
+This COG can then be used in a web client like a raster tile.
 
-This method requires a Tile Matrix. For this project, resolutions and scales set per LINZ map tiles standards: https://www.linz.govt.nz/data/linz-data-service/guides-and-documentation/nztm2000-map-tile-service-schema 
+This method requires a Tile Matrix.
+For this project, resolutions and scales are set following [LINZ map tile standards](https://www.linz.govt.nz/data/linz-data-service/guides-and-documentation/nztm2000-map-tile-service-schema).
 
 ## Method
 Base process is as follows:
