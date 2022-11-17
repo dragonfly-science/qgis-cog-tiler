@@ -81,7 +81,7 @@ make SCALES=YOUR,SCALES,HERE create-cog
 Example:
 
 ```
-make QGISPROJECTNAME=full-nz SCALES="32000000 16000000 8000000" create-cog
+make QGISPROJECTNAME=full-nz SCALES=32000000,16000000,8000000 create-cog
 ```
 
 
