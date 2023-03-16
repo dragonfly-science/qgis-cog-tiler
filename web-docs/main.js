@@ -28,7 +28,7 @@ const url = "http://localhost:5173/tiles/{z}/{x}/{y}.png"
 const colour = new TileLayer({
   title: 'Colour',
   crossOrigin: 'anonymous',
-  maxZoom: 5,
+  maxZoom: 6,
   source: new XYZ({
     url: url,
     wrapX: true,
@@ -68,7 +68,7 @@ const cog = new TileLayer({
 
 // draw map
 const map = new Map ({
-  layers: [cog, colour],
+  layers: [colour],
   target: 'map-js',
   view: new View({
     projection: nztmProjection,
