@@ -22,13 +22,13 @@ var resolutions = [ 8960, 4480, 2240, 1120, 560, 280, 140, 70, 28, 14, 7, 2.8, 1
 var matrixIds = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 
 // URL to COG tile
-const url = "http://localhost:5173/tiles/{z}/{x}/{y}.png"
+const url = "http://localhost:8000/raster-tiles/{z}/{x}/{y}.png"
 
 // Load XYZ
 const colour = new TileLayer({
   title: 'Colour',
   crossOrigin: 'anonymous',
-  maxZoom: 6,
+  maxZoom: 8,
   source: new XYZ({
     url: url,
     wrapX: true,
@@ -45,25 +45,25 @@ const colour = new TileLayer({
 
 const extent = [279896.0625000000000000,3227622.5000000000000000,3279896.0625000000000000,7227622.5000000000000000]
 
-// URL to COG tile
-const urlCOG = "https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/50000-cog.tif"
+// // URL to COG tile
+// const urlCOG = "https://d3cywq4ybqu7io.cloudfront.net/cogs/as-raster-tile/50000-cog.tif"
 
-// load COG
-const cogSource = new GeoTIFF({
-  sources: [
-    {
-      url:urlCOG,
-    },
-  ],
-  convertToRGB: true,
-})
+// // load COG
+// const cogSource = new GeoTIFF({
+//   sources: [
+//     {
+//       url:urlCOG,
+//     },
+//   ],
+//   convertToRGB: true,
+// })
 
-const cog = new TileLayer({
-  crossOrigin: 'anonymous',
-  source: cogSource,
-  extent: extent,
-  title: 'single'
-})
+// const cog = new TileLayer({
+//   crossOrigin: 'anonymous',
+//   source: cogSource,
+//   extent: extent,
+//   title: 'single'
+// })
 
 
 // draw map

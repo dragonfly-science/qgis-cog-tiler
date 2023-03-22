@@ -5,9 +5,12 @@ import rasterio as rio
 from rasterio.crs import CRS
 import shutil
 import os
-import multiprocessing
+from multiprocessing import Pool
+import sys
 
-# python3 utils/raster-tiler.py
+# python3 utils/raster-tiler.py 8
+
+PROCESSORS = sys.argv[1]
 
 in_tif_dir = "tiles/cog-outputs"
 outputdir = "tiles/raster-tiles"
@@ -21,10 +24,9 @@ scales = {
 	"5": 1000000,
 	"6": 500000,
 	"7": 100000,
-	"8": 50000
 	}
 
-def foo(x, y, zoom):
+def tiler(x, y, zoom):
 	print("\rzoom {}, tile {},{}".format(zoom, x, y), end='\r')
 	try:
 		tile = src.tile(x, y, zoom).render(img_format="PNG", compress="DEFLATE")
@@ -74,15 +76,11 @@ for zoom in scales:
 		for x in range(minmax["x"]["min"], minmax["x"]["max"] + 1):
 			pathlib.Path(f"{outputdir}/{zoom}/{x}").mkdir(parents=True, exist_ok=True)
 
-			processes = [ ]
-			for y in range(minmax["y"]["min"], minmax["y"]["max"] + 1):
-				foo(x, y, zoom)
-				t = multiprocessing.Process(target=foo, args=(x, y, zoom))
-			processes.append(t)
-			t.start()
-
-			for one_process in processes:
-				one_process.join()
+			with Pool(int(PROCESSORS)) as pool:
+				# prepare arguments
+				items = [(x, y, zoom) for y in range(minmax["y"]["min"], minmax["y"]["max"] + 1)]
+				# issue tasks to the process pool and wait for tasks to complete
+				pool.starmap(tiler, items)
 
 			print("Done!")
 

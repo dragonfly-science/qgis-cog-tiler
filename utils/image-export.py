@@ -9,15 +9,17 @@ from osgeo import gdal
 import geopandas as gp
 import sys
 import os
-import multiprocessing
+from multiprocessing import Pool
 
 # make tiler
-# python3 utils/image-export.py "qgis/full-nz.qgz" 32000000,16000000,8000000
+# python3 utils/image-export.py "qgis/full-nz.qgz" 32000000 4
 # OR
 # make QGISPROJECT=qgis/full-nz.qgz.qgz SCALES=32000000,16000000,8000000 image-exports
 
 project_path = sys.argv[1]
-scales = sys.argv[2].split(",")
+scale = sys.argv[2]
+
+PROCESSORS = sys.argv[3]
 
 grid = "data/vector/100k_grid.gpkg"
 out_dir = "tiles"
@@ -50,28 +52,38 @@ layers = QgsProject.instance().mapLayers().values()
 proj_extent = project.mapLayersByName("nz-extent")[0].extent()
 
 # Scales
-root_scale = min(scales)
-sorted_list = sorted(scales, reverse=False)
-list_length = len(sorted_list)
-gpGrid = gp.read_file(grid)
+gpGrid = gp.read_file(grid)   
 
-def rend(ovr):
-
+def rend(index, gtile):
+    
+    # print(f"Rendering Grid Tile: {gtile}")
+    
+    # Set Paths
+    raw_path = os.path.join(out_base, str(index), "raw")
+    os.makedirs(raw_path, exist_ok=True)
+    
+    # Get bounds for processing
+    xmin = gtile.geometry.bounds[0]
+    ymin = gtile.geometry.bounds[1]
+    xmax = gtile.geometry.bounds[2]
+    ymax = gtile.geometry.bounds[3]
+    
     width = math.ceil(
-        abs(
-            (((xmin - xmax) * meter_to_inch) / float(ovr))
-            * dpi
-        )
+    abs(
+        (((xmin - xmax) * meter_to_inch) / float(scale))
+        * dpi
+    )
     )
     height = math.ceil(
         abs(
-            (((ymin - ymax) * meter_to_inch) / float(ovr))
+            (((ymin - ymax) * meter_to_inch) / float(scale))
             * dpi
         )
     )
     
-    file_name = str(ovr) + "_images.png"
-    image_path = os.path.join(out_base, file_name)
+    file_name = str(scale) + "_images.png"
+    image_path = os.path.join(raw_path, file_name)
+    print(image_path)
     
     # Start Map Settings
     settings = QgsMapSettings()
@@ -102,7 +114,7 @@ def rend(ovr):
     print("Saving Image...")
     img.save(image_path, "png")
 
-    gtif_file_name = str(ovr) + "_gtiff_images.tif"
+    gtif_file_name = str(scale) + "_gtiff_images.tif"
     gtif_path = os.path.join(raw_path, gtif_file_name)
     
     print("Running Translate...")
@@ -123,35 +135,13 @@ def rend(ovr):
     
     os.remove(image_path)
 
-for index, gtile in gpGrid.iterrows():
 
-    print(f"Rendering Grid Tile: {gtile}")
-    
-    # Set Paths
-    raw_path = os.path.join(out_base, str(index), "raw")
-    os.makedirs(raw_path, exist_ok=True)
-    
-    # Get bounds for processing
-    xmin = gtile.geometry.bounds[0]
-    ymin = gtile.geometry.bounds[1]
-    xmax = gtile.geometry.bounds[2]
-    ymax = gtile.geometry.bounds[3]
-    
-    # Setting overview and base file name
-    ovr_ext = ".ovr"
-    ovr_name = str(root_scale) + ".tif"
-    
-    processes = []
-    # Loop sorted scales list
-    for ovr in sorted_list:
-        print(f"Scale: {str(ovr)}")
-        t = multiprocessing.Process(target=rend, args=(ovr, ))
-    processes.append(t)
-    t.start()
+with Pool(4) as pool:
+    # prepare arguments
+    items = [(index, gtile) for index, gtile in gpGrid.iterrows()]
+    # issue tasks to the process pool and wait for tasks to complete
+    pool.starmap(rend, items)
 
-    for one_process in processes:
-        one_process.join()
-        
 
         
     
