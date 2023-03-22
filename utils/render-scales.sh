@@ -2,7 +2,7 @@
 
 # bash utils/render-scales.sh
 
-scales=(32000000 16000000 8000000 4000000 2000000 1000000 500000 250000)
+scales=(50000)
 PROCESSORS=4
 QGIS_PROJ="qgis/full-nz.qgz"
 
