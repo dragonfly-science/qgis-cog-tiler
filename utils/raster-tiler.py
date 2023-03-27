@@ -8,12 +8,15 @@ import os
 from multiprocessing import Pool
 import sys
 
-# python3 utils/raster-tiler.py 8
+# python3 utils/raster-tiler.py 8 ${QGIS_PROJ}
 
 PROCESSORS = sys.argv[1]
 
-in_tif_dir = "tiles/cog-outputs"
-outputdir = "tiles/raster-tiles"
+project = sys.argv[2].split("/")[-1]
+print(project)
+
+in_tif_dir = f"tiles/cog-outputs"
+outputdir = f"tiles/raster-tiles/{project}"
 os.makedirs(outputdir, exist_ok=True)
 scales = {
 	"0": 32000000, 
@@ -23,8 +26,7 @@ scales = {
 	"4": 2000000, 
 	"5": 1000000,
 	"6": 500000,
-	"7": 100000,
-	"8": 50000
+	"7": 250000,
 	}
 
 def tiler(x, y, zoom):
