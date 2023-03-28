@@ -43,3 +43,20 @@ create-cog:
 
 build-site:
 	python3 utils/build-move.py
+
+# Make tiler docker
+TILER := tiler
+TILER_IMAGE := $(TILER):28-03-2023
+
+tiler-test: Dockerfile.tiler
+	docker run -it --rm --net=host --user=$$(id -u):$$(id -g) \
+	-e DISPLAY=$$DISPLAY \
+	-e RUN= -v$$(pwd):/work \
+	-w /work $(TILER_IMAGE) \
+	bash
+
+tiler-test-local: Dockerfile.tiler
+	docker build --tag $(TILER) - < $<  && \
+	docker tag $(TILER) $(TILER_IMAGE)
+
+# End make tiler

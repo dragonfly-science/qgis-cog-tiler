@@ -19,14 +19,8 @@ in_tif_dir = f"tiles/cog-outputs"
 outputdir = f"tiles/raster-tiles/{project}"
 os.makedirs(outputdir, exist_ok=True)
 scales = {
-	"0": 32000000, 
-	"1": 16000000, 
-	"2": 8000000, 
+	
 	"3": 4000000, 
-	"4": 2000000, 
-	"5": 1000000,
-	"6": 500000,
-	"7": 250000,
 	}
 
 def tiler(x, y, zoom):

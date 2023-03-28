@@ -1,19 +1,19 @@
 #!/bin/bash
 
-# bash utils/render-scales.sh
+# bash utils/render-scales.sh "qgis/full-nz-mono"
 
-scales=(100000 50000)
+scales=(4000000)
 PROCESSORS=4
-QGIS_PROJ="qgis/full-nz-mono"
+QGIS_PROJ=$1
 
 for scl in ${scales[@]}
 do
-    python3 utils/image-export.py $QGIS_PROJ.qgz $scl $PROCESSORS
+    python3 utils/image-export.py "${QGIS_PROJ}.qgz" $scl $PROCESSORS
 done
 
-# scales_new=$( echo ${scales[@]} | sed 's/ /,/g' )
-# echo ${scales_new}
+scales_new=$( echo ${scales[@]} | sed 's/ /,/g' )
+echo ${scales_new}
 
-# python3 utils/create-vrts.py ${scales_new} ${QGIS_PROJ}
-# # python3 utils/raster-tiler.py 8 ${QGIS_PROJ}
-# # python3 utils/clean-dirs.py
+python3 utils/create-vrts.py ${scales_new} ${QGIS_PROJ}
+python3 utils/raster-tiler.py 14 ${QGIS_PROJ}
+python3 utils/clean-dirs.py ${QGIS_PROJ}

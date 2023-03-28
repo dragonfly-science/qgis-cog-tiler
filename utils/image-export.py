@@ -38,9 +38,13 @@ dpi = 90.71428571428571
 # Supply path to qgis install location
 # Create a reference to the QgsApplication.  Setting the
 # second argument to False disables the GUI.
+print("Setting QGIS paths")
 qgs = QgsApplication([], False)
 QgsApplication.setPrefixPath("/usr", True)
-qgs.initQgis()
+QgsApplication.setThemeName("default")
+app = QgsApplication([], False, ".local/share/QGIS/QGIS3/profiles/default")
+app.initQgis()
+authMgr = app.authManager()
 
 project = QgsProject.instance()
 
@@ -135,7 +139,7 @@ def rend(index, gtile):
     
     os.remove(image_path)
 
-
+print("Rendering QGIS")
 with Pool(4) as pool:
     # prepare arguments
     items = [(index, gtile) for index, gtile in gpGrid.iterrows()]

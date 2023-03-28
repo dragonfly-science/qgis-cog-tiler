@@ -1,9 +1,13 @@
 import os
 import shutil
+import sys
 
-# python3 utils/clean-dirs.py
+# python3 utils/clean-dirs.py nz-fill-mono
 
-dirs = "tiles/raster-tiles"
+project = sys.argv[1].split("/")[-1]
+print(project)
+
+dirs = f"tiles/raster-tiles/{project}"
 
 # list_dirs = os.listdir(dirs)
 
